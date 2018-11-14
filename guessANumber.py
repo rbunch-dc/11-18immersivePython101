@@ -18,54 +18,71 @@ allowedGuesses = 5
 # init userGuesses 
 userGuesses = 0
 
-# Run a loop until gameOn = False
-while(gameOn):
-    # get the users Input and store it in userGuess
-    userGuess = raw_input("Guess a number between 1 and 10 ")    
-    # if the userGuess = the secret number, then... 
-    # change goneOn = False
-    # single = means assignment, == compare
-    # convert the user guess into a number
-    userGuessAsInt = int(userGuess)
+# Init keepPlaying to True for the first game
+keepPlaying = True
 
-    # the user just made a guess. Count it
-    userGuesses += 1
+while(keepPlaying):
+    # Run a loop until gameOn = False
+    while(gameOn):
+        # get the users Input and store it in userGuess
+        userGuess = raw_input("Guess a number between 1 and 10 ")    
+        # if the userGuess = the secret number, then... 
+        # change goneOn = False
+        # single = means assignment, == compare
+        # convert the user guess into a number
+        userGuessAsInt = int(userGuess)
+
+        # the user just made a guess. Count it
+        userGuesses += 1
 
 
-    if(userGuessAsInt == secret_number):
-        # the user guessed the right number (or we wouldnt Run
-        # this code) so change gameOn to false, so we can
-        # quit the loop
-        gameOn = False
-        # Congratulate the user for being awesome!!
-        print "Great job, %s. Game over." % userName
-    # If the user did not guess teh right number, tell them
-    # to guess again
-    else:
-        if(userGuesses == allowedGuesses):
-            # User was wrong.
-            # User has used up all their guesses.
-            # game over.
+        if(userGuessAsInt == secret_number):
+            # the user guessed the right number (or we wouldnt Run
+            # this code) so change gameOn to false, so we can
+            # quit the loop
             gameOn = False
-            print "You are out of guesses! The number was %i" % secret_number
-        # if the user is too high, tell them
-        elif(userGuessAsInt > secret_number):
-            # print "Your guess is too high"
-            # print str(userGuessAsInt) + " is too high"
-            print "%i is too high" % userGuessAsInt
-            print "You have %i guesses left!" % (allowedGuesses-userGuesses)
-        # if the user guess isn't too high, and it's not right
-        # then it must be... to low
+            # Congratulate the user for being awesome!!
+            print "Great job, %s. Game over." % userName
+        # If the user did not guess teh right number, tell them
+        # to guess again
         else:
-            # print "Your guess is too low"
-            # option 1. print userGuess + " is too low"            
-            # option 2. print str(userGuessAsInt) + " is too low"            
-            # Interpolation = mixing strings and variables
-            # In Python, you can interpolate with a % sign
-            print "%s, %i is too low" % (userName,userGuessAsInt)
-            print "You have %i guesses left!" % (allowedGuesses-userGuesses)
+            if(userGuesses == allowedGuesses):
+                # User was wrong.
+                # User has used up all their guesses.
+                # game over.
+                gameOn = False
+                print "You are out of guesses! The number was %i" % secret_number
+            # if the user is too high, tell them
+            elif(userGuessAsInt > secret_number):
+                # print "Your guess is too high"
+                # print str(userGuessAsInt) + " is too high"
+                print "%i is too high" % userGuessAsInt
+                print "You have %i guesses left!" % (allowedGuesses-userGuesses)
+            # if the user guess isn't too high, and it's not right
+            # then it must be... to low
+            else:
+                # print "Your guess is too low"
+                # option 1. print userGuess + " is too low"            
+                # option 2. print str(userGuessAsInt) + " is too low"            
+                # Interpolation = mixing strings and variables
+                # In Python, you can interpolate with a % sign
+                print "%s, %i is too low" % (userName,userGuessAsInt)
+                print "You have %i guesses left!" % (allowedGuesses-userGuesses)
 
-            print "Guess again..."
+                print "Guess again..."
+    playAgain = raw_input("Would you like to play again? (y or n)")
+    if(playAgain == "n"):
+        keepPlaying = False
+        print "Thanks for playing, %s" % userName
+    else:
+        # Reset all our vars
+        # get a new number
+        secret_number = random.randint(1, 10)
+        # reset gameOn
+        gameOn = True
+        # reset their number of guesses
+        userGuesses = 0
+
 # import this
 
 
