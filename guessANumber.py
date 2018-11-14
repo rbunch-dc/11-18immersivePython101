@@ -1,3 +1,6 @@
+# Ask the user for his or her name...
+userName = raw_input("What is your name? ")
+
 # Set up the (not-so) secret number as 5.
 secret_number = 5
 # Init the bool gameOn to True
@@ -17,8 +20,33 @@ while(gameOn):
         # quit the loop
         gameOn = False
         # Congratulate the user for being awesome!!
-        print "Great job. Game over."
+        print "Great job, %s. Game over." % userName
     # If the user did not guess teh right number, tell them
     # to guess again
     else:
-        print "Guess again..."
+        # if the user is too high, tell them
+        if(userGuessAsInt > secret_number):
+            # print "Your guess is too high"
+            print "%i  is too high" % userGuessAsInt
+        # if the user guess isn't too high, and it's not right
+        # then it must be... to low
+        else:
+            # print "Your guess is too low"
+            # option 1. print userGuess + " is too low"            
+            # option 2. print str(userGuessAsInt) + " is too low"            
+            # Interpolation = mixing strings and variables
+            # In Python, you can interpolate with a % sign
+            print "%s, %i is too low" % (userName,userGuessAsInt)
+
+            print "Guess again..."
+# import this
+
+
+# If number = guess
+# else
+#     if number is too high
+#     if number is too low
+
+# if number is too high
+# if number is too low
+# if number is right
