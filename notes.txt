@@ -1,0 +1,6 @@
+find - Searches file strucutre for a file or folder
+locate - Searches file strucutre for a file or folder
+---    -i = case insensitive
+toilet - Wow. Just wow.
+grep - searches inside stuff
+sed - search a string for a substring, and replace
