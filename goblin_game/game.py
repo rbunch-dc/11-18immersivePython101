@@ -45,6 +45,7 @@ while game_on:
     # 1. What do you want to draw?
     # 2. Where do you want to draw it?
     pygame_screen.blit(background_image,[0,0])
+    pygame_screen.blit(hero_image,[0,0])
 
     # 7. Flip the screen and start over
     pygame.display.flip()
