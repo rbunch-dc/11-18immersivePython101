@@ -1,9 +1,12 @@
 import os
+# from [NAMEOFFILE] import [CLASS]
 from Hero import Hero
+from Goblin import Goblin
 
 hero_name = raw_input("WHat is your name, brave one?")
 theHero = Hero(hero_name, 8)
 theHero.cheer_hero()
+goblin = Goblin()
 
 while(1):
 
@@ -13,15 +16,15 @@ while(1):
     1. fight goblin
     2. do a little dance
     3. flee""" 
-    print message % (theHero.health,theHero.power,goblin_health,goblin_power)
+    print message % (theHero.health,theHero.power, goblin.health, goblin.power)
     # Get the user's choice
     user_input = raw_input("> ")
 
     if user_input == "1":
         # The hero has decided to attack!
         # subtract goblins health by hero power
-        goblin_health -= theHero.power
-        print "You have done %d damage to the goblin!" % hero_power
+        goblin.take_damage(theHero.power)
+        print "You have done %d damage to the goblin!" % theHero.power
     elif user_input == "2":
         theHero.health += 10
         print """The goblin stares at you in disbelief of your stupidity. 
