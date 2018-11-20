@@ -4,6 +4,5 @@ class Hero(object):
         self.name = name
         self.health = 10
         self.power = power
-
-theHero = Hero('Link', 8)
-print theHero.name
+    def cheer_hero(self):
+        print "Welcome, brave %s" % (self.name)
