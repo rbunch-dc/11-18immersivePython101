@@ -64,3 +64,6 @@ while(theHero.is_alive()):
             theHero.power += 5
         raw_input("Hit enter to continue")
         os.system("clear")
+    fight_again = raw_input("Fight another fiend, brave %s") % (theHero.name)
+    if fight_again == "N":
+        break

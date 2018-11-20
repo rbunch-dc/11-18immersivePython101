@@ -4,6 +4,7 @@ class Hero(object):
         self.name = name
         self.health = 10
         self.power = power
+        self.xp = 0
     def cheer_hero(self):
         print "Welcome, brave %s" % (self.name)
     def take_damage(self,ammount_of_damage):
