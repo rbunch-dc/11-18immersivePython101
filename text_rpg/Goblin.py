@@ -10,3 +10,5 @@ class Goblin(object):
         self.power = randomPower
     def take_damage(self,ammount_of_damage):
         self.health -= ammount_of_damage
+    def is_alive(self):
+        return self.health > 0
