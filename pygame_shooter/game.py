@@ -1,6 +1,7 @@
 # 1. Include pygame
 # we needed pip to get this for us because Python doesnt ship with it
 import pygame
+from Hero import Hero
 
 # 2. Initialize Pygame.
 # Why do we need to do this? Because they told us to.
@@ -12,16 +13,18 @@ pygame_screen = pygame.display.set_mode(screen_size)
 # set the title of the window that opens...
 pygame.display.set_caption('Robin Hood')
 
+theHero = Hero()
+
 # ========VARIABLES FOR OUR GAME==========
 background_image = pygame.image.load('background.png')
 hero_image = pygame.image.load('hero.png')
 goblin_image = pygame.image.load('goblin.png')
 monster_image = pygame.image.load('monster.png')
 arrow_image = pygame.image.load('arrow.png')
-heroLoc = {
-    'x': 0,
-    'y': 0
-}
+# heroLoc = {
+#     'x': 100,
+#     'y': 100
+# }
 
 # =========MAIN GAME LOOP==========
 game_on = True
@@ -40,7 +43,18 @@ while game_on:
             print event.key
             if event.key == 275:
                 # the user pressed the right arrow!!! Move our dude right
-                heroLoc['x'] += 10
+                # heroLoc['x'] += 10
+                # theHero.x += 10
+                theHero.shouldMove("right")
+            elif event.key == 276:
+                # the user pressed left arrow!
+                # theHero.x -= 10
+                theHero.shouldMove("left")
+            if event.key == 273:
+                # the user pressed the up arrow!
+                theHero.shouldMove("up")
+            elif event.key == 274:
+                theHero.shouldMove("down")
     # ==========DRAW STUFF===========
     # we use blit to draw on the screen. blit = block image transfer
     # blit is a method, that takes 2 arg:
@@ -48,5 +62,5 @@ while game_on:
     # 2. Where to draw it
     # in the docs... SURFACE = our "pygame_screen"
     pygame_screen.blit(background_image,[0,0])
-    pygame_screen.blit(hero_image,[heroLoc['x'],heroLoc['y']])
+    pygame_screen.blit(hero_image,[theHero.x,theHero.y])
     pygame.display.flip()
