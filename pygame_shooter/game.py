@@ -2,6 +2,7 @@
 # we needed pip to get this for us because Python doesnt ship with it
 import pygame
 from Hero import Hero
+from BadGuy import BadGuy
 
 # 2. Initialize Pygame.
 # Why do we need to do this? Because they told us to.
@@ -14,6 +15,7 @@ pygame_screen = pygame.display.set_mode(screen_size)
 pygame.display.set_caption('Robin Hood')
 
 theHero = Hero()
+bad_guy = BadGuy()
 
 # ========VARIABLES FOR OUR GAME==========
 background_image = pygame.image.load('background.png')
@@ -75,5 +77,7 @@ while game_on:
     # in the docs... SURFACE = our "pygame_screen"
     pygame_screen.blit(background_image,[0,0])
     theHero.draw_me()
+    bad_guy.update_me(theHero)
     pygame_screen.blit(hero_image,[theHero.x,theHero.y])
+    pygame_screen.blit(monster_image,[bad_guy.x,bad_guy.y])
     pygame.display.flip()
