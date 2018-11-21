@@ -55,6 +55,18 @@ while game_on:
                 theHero.shouldMove("up")
             elif event.key == 274:
                 theHero.shouldMove("down")
+        elif event.type == pygame.KEYUP:
+            # the user RELEASED a key
+            if event.key == 275:
+                theHero.shouldMove("right",False)
+            elif event.key == 276:
+                theHero.shouldMove("left",False)
+            if event.key == 273:
+                theHero.shouldMove("up",False)
+            elif event.key == 274:
+                theHero.shouldMove("down",False)
+
+
     # ==========DRAW STUFF===========
     # we use blit to draw on the screen. blit = block image transfer
     # blit is a method, that takes 2 arg:
@@ -62,5 +74,6 @@ while game_on:
     # 2. Where to draw it
     # in the docs... SURFACE = our "pygame_screen"
     pygame_screen.blit(background_image,[0,0])
+    theHero.draw_me()
     pygame_screen.blit(hero_image,[theHero.x,theHero.y])
     pygame.display.flip()
