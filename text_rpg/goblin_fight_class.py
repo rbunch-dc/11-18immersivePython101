@@ -4,6 +4,7 @@ from Hero import Hero
 from Goblin import Goblin
 from Vampire import Vampire
 from random import randint
+from time import sleep
 
 hero_name = raw_input("WHat is your name, brave one?")
 # There is only one Frodo
@@ -63,6 +64,8 @@ while(theHero.is_alive()):
             print "%s has gone into a rage as death appraoches. Power increased!" % hero_name
             theHero.power += 5
         raw_input("Hit enter to continue")
+        # wait 2 seconds before doing the next thing...
+        sleep(1)
         os.system("clear")
     fight_again = raw_input("Fight another fiend, brave %s") % (theHero.name)
     if fight_again == "N":
