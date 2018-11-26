@@ -1,4 +1,5 @@
-import pygame
+# We use pygame in this file, so we have to import it!!!
+# import pygame
 
 class Hero(object):
     # classes always contain 2 parts:
@@ -21,12 +22,16 @@ class Hero(object):
             self.should_move_down = start
         if(direction == "up"):
             self.should_move_up = start
-    def draw_me(self):
+    def draw_me(self,w,h):
         if(self.should_move_right):
-            self.x += self.speed
+            if(self.x <= w - 64):
+                self.x += self.speed
         elif(self.should_move_left):
-            self.x -= self.speed
+            if(self.x >= 32):
+                self.x -= self.speed
         if(self.should_move_down):
-            self.y += self.speed
+            if(self.y <= h - 64):
+                self.y += self.speed
         elif self.should_move_up:
-            self.y -= self.speed
+            if(self.y >= 32):
+                self.y -= self.speed

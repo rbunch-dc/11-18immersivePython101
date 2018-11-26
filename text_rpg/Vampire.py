@@ -9,16 +9,16 @@ class Vampire(Character):
         # call parent/super init method
         super(Vampire, self).__init__('Vampire',15,4)
         # randomPower = random.randint(2,5)
-        # randomPower = randint(4,7)
-        # self.name = "Vampire"
-        # self.health = 15
-        # self.power = randomPower
-    # def take_damage(self,ammount_of_damage, game):
-    #     self.health -= ammount_of_damage
-    #     if self.is_alive():
-    #         game.updateTotal(10)
-    # def is_alive(self):
-    #     return self.health > 0
+        randomPower = randint(4,7)
+        self.name = "Vampire"
+        self.health = 15
+        self.power = randomPower
+    def take_damage(self,ammount_of_damage, game):
+        self.health -= ammount_of_damage
+        if self.is_alive():
+            game.updateTotal(10)
+    def is_alive(self):
+        return self.health > 0
     def make_girls_swoon(self):
         print "The skin of the Cullens flashes like diamonds."
 

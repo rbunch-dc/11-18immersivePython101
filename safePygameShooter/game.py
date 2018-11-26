@@ -76,8 +76,8 @@ while game_on:
     # 2. Where to draw it
     # in the docs... SURFACE = our "pygame_screen"
     pygame_screen.blit(background_image,[0,0])
-    theHero.draw_me()
+    theHero.draw_me(512,480)
     bad_guy.update_me(theHero)
     pygame_screen.blit(hero_image,[theHero.x,theHero.y])
     pygame_screen.blit(monster_image,[bad_guy.x,bad_guy.y])
-    pygame.display.flip()
+    pygame.display.update()
