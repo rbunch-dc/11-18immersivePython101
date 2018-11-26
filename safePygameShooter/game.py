@@ -3,6 +3,10 @@
 import pygame
 from Hero import Hero
 from BadGuy import BadGuy
+from Arrow import Arrow
+
+# we want to have pygame "groups"
+from pygame.sprite import Group
 
 # 2. Initialize Pygame.
 # Why do we need to do this? Because they told us to.
@@ -16,6 +20,10 @@ pygame.display.set_caption('Robin Hood')
 
 theHero = Hero()
 bad_guy = BadGuy()
+# make a group for our arrows to live in
+# a group is a pygame thing. Its like a list,
+# but with cool stuff too
+arrows = Group()
 
 # ========VARIABLES FOR OUR GAME==========
 background_image = pygame.image.load('background.png')
@@ -57,6 +65,11 @@ while game_on:
                 theHero.shouldMove("up")
             elif event.key == 274:
                 theHero.shouldMove("down")
+            elif event.key == 32:
+                # user pressed space bar... FIRE!!!!
+                new_arrow = Arrow(theHero)
+                arrows.add(new_arrow)
+                print arrows
         elif event.type == pygame.KEYUP:
             # the user RELEASED a key
             if event.key == 275:
