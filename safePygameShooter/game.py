@@ -6,7 +6,7 @@ from BadGuy import BadGuy
 from Arrow import Arrow
 
 # we want to have pygame "groups"
-from pygame.sprite import Group
+from pygame.sprite import Group,groupcollide
 
 # 2. Initialize Pygame.
 # Why do we need to do this? Because they told us to.
@@ -105,5 +105,9 @@ while game_on:
     pygame_screen.blit(hero_image,[theHero.x,theHero.y])
 
     arrow_hit = groupcollide(arrows,bad_guys,True,True)
+    # print arrow_hit
+    if arrow_hit:
+        bad_guys.add(BadGuy())
 
+    
     pygame.display.update()
