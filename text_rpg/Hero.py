@@ -14,3 +14,8 @@ class Hero(object):
         #     return True
         # else:
         return self.health > 0
+    def getPower(self):
+        if hero.weapon == "Axe"
+            return 6 + self.power
+        elif hero.hasVisitedWizard:
+            return 1000

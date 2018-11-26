@@ -36,7 +36,7 @@ while(theHero.is_alive()):
         if user_input == "1":
             # The hero has decided to attack!
             # subtract monsters health by hero power
-            monster.take_damage(theHero.power)
+            monster.take_damage(theHero)
             print "You have done %d damage to the monster!" % theHero.power
         elif user_input == "2":
             theHero.health += 10

@@ -8,7 +8,7 @@ class Goblin(object):
         self.name = "Goblin"
         self.health = 6
         self.power = randomPower
-    def take_damage(self,ammount_of_damage):
-        self.health -= ammount_of_damage
+    def take_damage(self,heroObject):
+        self.health -= heroObject.getPower()
     def is_alive(self):
         return self.health > 0
