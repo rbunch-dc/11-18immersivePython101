@@ -20,6 +20,11 @@ pygame.display.set_caption('Robin Hood')
 
 theHero = Hero()
 bad_guy = BadGuy()
+# make a bad_guys group
+bad_guys = Group()
+# add the bad_guy to the bad_guys group
+bad_guys.add(bad_guy)
+
 # make a group for our arrows to live in
 # a group is a pygame thing. Its like a list,
 # but with cool stuff too
@@ -69,7 +74,7 @@ while game_on:
                 # user pressed space bar... FIRE!!!!
                 new_arrow = Arrow(theHero)
                 arrows.add(new_arrow)
-                print arrows
+                # print arrows
         elif event.type == pygame.KEYUP:
             # the user RELEASED a key
             if event.key == 275:
@@ -90,7 +95,15 @@ while game_on:
     # in the docs... SURFACE = our "pygame_screen"
     pygame_screen.blit(background_image,[0,0])
     theHero.draw_me(512,480)
-    bad_guy.update_me(theHero)
+    for bad_guy in bad_guys:
+        bad_guy.update_me(theHero)
+        pygame_screen.blit(monster_image,[bad_guy.x,bad_guy.y])
+
+    for arrow in arrows:
+        arrow.update_me()
+        pygame_screen.blit(arrow_image,[arrow.x,arrow.y])
     pygame_screen.blit(hero_image,[theHero.x,theHero.y])
-    pygame_screen.blit(monster_image,[bad_guy.x,bad_guy.y])
+
+    arrow_hit = groupcollide(arrows,bad_guys,True,True)
+
     pygame.display.update()
