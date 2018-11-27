@@ -4,6 +4,7 @@ import pygame
 from Hero import Hero
 from BadGuy import BadGuy
 from Arrow import Arrow
+from Button import Start_Button
 
 # we want to have pygame "groups"
 from pygame.sprite import Group,groupcollide
@@ -24,6 +25,8 @@ bad_guy = BadGuy()
 bad_guys = Group()
 # add the bad_guy to the bad_guys group
 bad_guys.add(bad_guy)
+# make a start button
+start_button = Start_Button(pygame_screen)
 
 # make a group for our arrows to live in
 # a group is a pygame thing. Its like a list,
@@ -36,13 +39,15 @@ hero_image = pygame.image.load('hero.png')
 goblin_image = pygame.image.load('goblin.png')
 monster_image = pygame.image.load('monster.png')
 arrow_image = pygame.image.load('arrow.png')
+tick = 0
 # heroLoc = {
 #     'x': 100,
 #     'y': 100
 # }
-
+direction = 1
 # =========MAIN GAME LOOP==========
 game_on = True
+game_start = False
 # the loop will run as long as our bool is true
 while game_on:
     # we are in the game loop from here on out!
@@ -93,7 +98,7 @@ while game_on:
     # 1. What to draw
     # 2. Where to draw it
     # in the docs... SURFACE = our "pygame_screen"
-    pygame_screen.blit(background_image,[0,0])
+    pygame_screen.blit(background_image,[tick,tick])
     theHero.draw_me(512,480)
     for bad_guy in bad_guys:
         bad_guy.update_me(theHero)
@@ -109,5 +114,8 @@ while game_on:
     if arrow_hit:
         bad_guys.add(BadGuy())
 
+    if game_start == False:
+        start_button.setup_message()
+        start_button.draw_button()
     
-    pygame.display.update()
+    pygame.display.flip()
