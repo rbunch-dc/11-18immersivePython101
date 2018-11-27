@@ -90,6 +90,13 @@ while game_on:
                 theHero.shouldMove("up",False)
             elif event.key == 274:
                 theHero.shouldMove("down",False)
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+			mouse_x, mouse_y = pygame.mouse.get_pos()
+			# print mouse_x,mouse_y;
+			if start_button.rect.collidepoint(mouse_x, mouse_y):
+				game_start = True
+				bg_music = pygame.mixer.Sound('faf.wav')
+				bg_music.play()
 
 
     # ==========DRAW STUFF===========
@@ -99,20 +106,21 @@ while game_on:
     # 2. Where to draw it
     # in the docs... SURFACE = our "pygame_screen"
     pygame_screen.blit(background_image,[tick,tick])
-    theHero.draw_me(512,480)
-    for bad_guy in bad_guys:
-        bad_guy.update_me(theHero)
-        pygame_screen.blit(monster_image,[bad_guy.x,bad_guy.y])
+    if game_start == True:
+        theHero.draw_me(512,480)
+        for bad_guy in bad_guys:
+            bad_guy.update_me(theHero)
+            pygame_screen.blit(monster_image,[bad_guy.x,bad_guy.y])
 
-    for arrow in arrows:
-        arrow.update_me()
-        pygame_screen.blit(arrow_image,[arrow.x,arrow.y])
-    pygame_screen.blit(hero_image,[theHero.x,theHero.y])
+        for arrow in arrows:
+            arrow.update_me()
+            pygame_screen.blit(arrow_image,[arrow.x,arrow.y])
+        pygame_screen.blit(hero_image,[theHero.x,theHero.y])
 
-    arrow_hit = groupcollide(arrows,bad_guys,True,True)
-    # print arrow_hit
-    if arrow_hit:
-        bad_guys.add(BadGuy())
+        arrow_hit = groupcollide(arrows,bad_guys,True,True)
+        # print arrow_hit
+        if arrow_hit:
+            bad_guys.add(BadGuy())
 
     if game_start == False:
         start_button.setup_message()
